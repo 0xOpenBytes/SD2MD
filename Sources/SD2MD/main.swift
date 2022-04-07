@@ -2,6 +2,7 @@ import ScreenData
 import ArgumentParser
 import FLet
 import Foundation
+import SDMarkdown
 
 struct SD2MD: ParsableCommand {
     @Argument()
@@ -16,16 +17,15 @@ struct SD2MD: ParsableCommand {
         else { throw __.testing.error(description: "File Not Found: \(inputPath)") }
         
         let screen = try JSONDecoder().decode(SomeScreen.self, from: inputFileContents)
-        let markdownScreen = SDMarkdown(screen: screen)
+        let markdownScreen = screen.markdown
         
         if let outputPath = outputPath {
             let outputURL = URL(fileURLWithPath: outputPath)
             try markdownScreen
-                .generate()
                 .data(using: .utf8)?
                 .write(to: outputURL)
         } else {
-            print(markdownScreen.generate())
+            print(markdownScreen)
         }
     }
 }
