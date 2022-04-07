@@ -17,18 +17,25 @@ struct SD2MD: ParsableCommand {
         else { throw __.testing.error(description: "File Not Found: \(inputPath)") }
         
         let screen = try JSONDecoder().decode(SomeScreen.self, from: inputFileContents)
-        let markdownScreen = screen.markdown
+        let markdown = SDMarkdown(
+            screen: screen
+        )
         
         if let outputPath = outputPath {
             let outputURL = URL(fileURLWithPath: outputPath)
-            try markdownScreen
+            try markdown
+                .screens[0]
+                .markdown
                 .data(using: .utf8)?
                 .write(to: outputURL)
         } else {
-            print(markdownScreen)
+            print(
+                markdown
+                    .screens[0]
+                    .markdown
+            )
         }
     }
 }
-
 
 SD2MD.main()
