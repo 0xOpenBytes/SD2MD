@@ -3,10 +3,9 @@
 *Convert ScreenData into basic Markdown*
 
 ```
-USAGE: sd2-md <input-path> [<output-path>]
+USAGE: sd2-md [<output-path>]
 
 ARGUMENTS:
-  <input-path>
   <output-path>
 
 OPTIONS:
