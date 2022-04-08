@@ -9,7 +9,11 @@ struct SD2MD: ParsableCommand {
     var outputPath: String?
     
     mutating func run() throws {
-        let metadata = Workspace.post_metadata
+        guard let post_metadata = Workspace.post_metadata else {
+            return try output(markdown: Workspace.post.markdown)
+        }
+        
+        let metadata = post_metadata
             .map { (key, value) in
                 "\(key.rawValue): \(value)"
             }

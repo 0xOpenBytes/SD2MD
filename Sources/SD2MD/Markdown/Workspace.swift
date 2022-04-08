@@ -12,7 +12,7 @@ enum Workspace {
         case date, description, tags
     }
     
-    static let post_metadata: [MetadataKey: String] = [
+    static let post_metadata: [MetadataKey: String]? = [
         .date: "2022-02-2 20:22",
         .description: "...",
         .tags: ""
