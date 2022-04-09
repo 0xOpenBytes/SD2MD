@@ -13,13 +13,13 @@ final class SD2MDTests: XCTestCase {
                     
                         .spacer(),
                     
-                        .text("Xcode Workspace to convert ScreenData into Markdown. CLI tool to either print or save the Markdown generated from the ScreenData."),
+                        .label(title: "ScreenData to Markdown (SD2MD)", font: .headline),
                     
-                        .spacer(size: 2),
-                    
-                        .label(title: "Xcode Usage", font: .headline),
+                        .text("SD2MD is a Xcode Workspace to convert ScreenData into Markdown and CLI tool to either print or save the Markdown generated from the ScreenData."),
                     
                         .spacer(),
+                    
+                        .label(title: "Xcode Usage", font: .headline),
                     
                         .text("All changes should be done insider the `Markdown` folder. Edit `Workspace.post` to what you want converted from ScreenData into Markdown."),
                     

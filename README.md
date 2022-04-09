@@ -3,14 +3,12 @@
 
 <br/>
 
-Xcode Workspace to convert ScreenData into Markdown. CLI tool to either print or save the Markdown generated from the ScreenData.
-
-<br/><br/>
-
-### Xcode Usage
+### ScreenData to Markdown (SD2MD)
+SD2MD is a Xcode Workspace to convert ScreenData into Markdown and CLI tool to either print or save the Markdown generated from the ScreenData.
 
 <br/>
 
+### Xcode Usage
 All changes should be done insider the `Markdown` folder. Edit `Workspace.post` to what you want converted from ScreenData into Markdown.
 
 <br/>
