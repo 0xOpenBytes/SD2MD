@@ -7,7 +7,7 @@
 
 import ScreenData
 
-enum Workspace {
+public enum Workspace {
     enum MetadataKey: String {
         case date, description, tags
     }

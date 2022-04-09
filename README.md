@@ -1,14 +1,19 @@
 # SD2MD
-
 *Convert ScreenData into basic Markdown*
+
+<br/>
 
 Xcode Workspace to convert ScreenData into Markdown. CLI tool to either print or save the Markdown generated from the ScreenData.
 
+<br/><br/>
 
 ### Xcode Usage
 
+<br/>
+
 All changes should be done insider the `Markdown` folder. Edit `Workspace.post` to what you want converted from ScreenData into Markdown.
 
+<br/>
 
 ```swift
 import ScreenData
@@ -36,9 +41,15 @@ enum Workspace {
 }
 ```
 
+<br/>
+
 ***
 
-### CLI Usage
+<br/>
+
+**CLI Usage**
+
+<br/>
 
 ```
 USAGE: sd2-md [<output-path>]
@@ -49,4 +60,3 @@ ARGUMENTS:
 OPTIONS:
   -h, --help              Show help information.
 ```
-

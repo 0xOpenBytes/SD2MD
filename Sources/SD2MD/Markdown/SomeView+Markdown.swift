@@ -7,14 +7,14 @@
 
 import ScreenData
 
-enum CodeType: String {
+public enum CodeType: String {
     case swift
     case kotlin
     case shell
     case text = ""
 }
 
-extension SomeView {
+public extension SomeView {
     static func code(
         type: CodeType,
         _ block: () -> String

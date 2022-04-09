@@ -1,47 +1,83 @@
 import XCTest
-import class Foundation.Bundle
+import ScreenData
+import SDMarkdown
+import SD2MD
 
 final class SD2MDTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-
-        // Some of the APIs that we use below are available in macOS 10.13 and above.
-        guard #available(macOS 10.13, *) else {
-            return
-        }
-
-        // Mac Catalyst won't have `Process`, but it is supported for executables.
-        #if !targetEnvironment(macCatalyst)
-
-        let fooBinary = productsDirectory.appendingPathComponent("SD2MD")
-
-        let process = Process()
-        process.executableURL = fooBinary
-
-        let pipe = Pipe()
-        process.standardOutput = pipe
-
-        try process.run()
-        process.waitUntilExit()
-
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)
-
-        XCTAssertEqual(output, "Hello, world!\n")
-        #endif
-    }
-
-    /// Returns path to the built products directory.
-    var productsDirectory: URL {
-      #if os(macOS)
-        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
-            return bundle.bundleURL.deletingLastPathComponent()
-        }
-        fatalError("couldn't find the products directory")
-      #else
-        return Bundle.main.bundleURL
-      #endif
+    func testReadme() throws {
+        let readme = SomeScreen(
+            title: "SD2MD",
+            someView: .vstack(
+                [
+                    .label(title: "Convert ScreenData into basic Markdown", font: .footnote),
+                    
+                        .spacer(),
+                    
+                        .text("Xcode Workspace to convert ScreenData into Markdown. CLI tool to either print or save the Markdown generated from the ScreenData."),
+                    
+                        .spacer(size: 2),
+                    
+                        .label(title: "Xcode Usage", font: .headline),
+                    
+                        .spacer(),
+                    
+                        .text("All changes should be done insider the `Markdown` folder. Edit `Workspace.post` to what you want converted from ScreenData into Markdown."),
+                    
+                        .spacer(),
+                    
+                        .code(type: .swift) {
+                            """
+                            import ScreenData
+                            
+                            enum Workspace {
+                                enum MetadataKey: String {
+                                    case date, description, tags
+                                }
+                                
+                                static let post_metadata: [MetadataKey: String]? = [
+                                    .date: "2022-02-2 20:22",
+                                    .description: "...",
+                                    .tags: ""
+                                ]
+                                
+                                static let post = SomeScreen(
+                                    title: "[Draft] POST_NAME",
+                                    someView: .vstack(
+                                        [
+                                            .text("TODO")
+                                        ]
+                                    )
+                                )
+                            
+                            }
+                            """
+                        },
+                    
+                        .spacer(),
+                    
+                    SomeCustomView(markdown: "***").someView,
+                    
+                        .spacer(),
+                    
+                        .label(title: "CLI Usage"),
+                    
+                        .spacer(),
+                    
+                        .code(type: .text) {
+                            """
+                            USAGE: sd2-md [<output-path>]
+                            
+                            ARGUMENTS:
+                              <output-path>
+                            
+                            OPTIONS:
+                              -h, --help              Show help information.
+                            """
+                        }
+                ]
+            )
+        )
+        
+        print(readme.markdown)
     }
 }
